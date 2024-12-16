@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Eevee: A Normal-type Pokémon that can evolve into eight different Pokémon, including Jolteon, Flareon, Vaporeon, Umbreon, Espeon, Leafeon, Glaceon, and Sylveon
+    Mewtwo: A Pokémon created by genetic manipulation
+    Celebi: A Psychic/Grass-type Pokémon that is both mythic and legendary
+    Gholdengo: Pokémon number 1,000
+    Mamoswine: A cool Pokémon
+    Deoxys: A cool Pokémon
+    Donphan: A cool Pokémon
+    Mudsdale: A cool Pokémon
+    Trevenant: A cool Pokémon
+    Mew: A cool Pokémon
+    Gogoat: A cool Pokémon
+    Kyurem: An Ice-Dragon Pokémon */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
