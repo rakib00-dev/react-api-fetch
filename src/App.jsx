@@ -1,7 +1,5 @@
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return <h1 className="bg-red-500 font-medium text-red-50">hellow</h1>;
 }
 
 export default App;
