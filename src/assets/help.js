@@ -1,3 +1,6 @@
+const freeApiGithubLink =
+  'https://github.com/public-apis/public-apis?tab=readme-ov-file#business';
+
 {
   /* Eevee: A Normal-type Pokémon that can evolve into eight different Pokémon, including Jolteon, Flareon, Vaporeon, Umbreon, Espeon, Leafeon, Glaceon, and Sylveon
     Mewtwo: A Pokémon created by genetic manipulation
