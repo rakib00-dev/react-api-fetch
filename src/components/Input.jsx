@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Card from './Card';
 
 const Input = () => {
-  const [value, setValue] = useState('ditto');
+  const [value, setValue] = useState('');
   const [pokemon, setPokemon] = useState(null);
 
   function inputFunction(e) {
@@ -27,10 +27,32 @@ const Input = () => {
     }
   }, [value]);
 
+  useEffect(() => {
+    const pokeNameList = [
+      'ditto',
+      'eevee',
+      'mewtwo',
+      'celebi',
+      'gholdengo',
+      'mamoswine',
+      'deoxys',
+      'donphan',
+      'mudsdale',
+      'trevenant',
+      'mew',
+      'gogoat',
+      'kyurem',
+    ];
+    if (!value) {
+      const randomIndex = Math.floor(Math.random() * pokeNameList.length);
+      setValue(pokeNameList[randomIndex]);
+    }
+  }, [value]);
+
   if (!pokemon) return null;
 
-  console.log(pokemon.sprites.back_default);
-  console.log(pokemon.sprites.front_default);
+  // console.log(pokemon.sprites.back_default);
+  // console.log(pokemon.sprites.front_default);
 
   return (
     <>

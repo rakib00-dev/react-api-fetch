@@ -3,12 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const Card = ({ srcFront, srcBack, name, abilities }) => {
   const imgTag = useRef();
   const [count, setCount] = useState(0); // Use state for controlling the count
-  const imgs = [
-    srcFront, //
-    srcBack, //
-  ];
-
-  console.log(srcBack);
+  const imgs = [srcFront, srcBack];
 
   const imageChange = () => {
     if (imgTag.current) {
@@ -20,7 +15,7 @@ const Card = ({ srcFront, srcBack, name, abilities }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       imageChange();
-    }, 1000);
+    }, 800);
 
     return () => clearInterval(interval); // Cleanup on component unmount
   }, [count]); // Trigger on count change
