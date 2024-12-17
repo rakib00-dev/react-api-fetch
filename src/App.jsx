@@ -5,7 +5,6 @@ function App() {
   return (
     <div className="grid place-items-center gap-2 m-8">
       <Input />
-      <Card />
     </div>
   );
 }
