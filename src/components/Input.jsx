@@ -4,7 +4,7 @@ import Card from './Card';
 
 const Input = () => {
   const [value, setValue] = useState('ditto');
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState(null);
 
   function inputFunction(e) {
     const lower = e.target.value;
@@ -14,30 +14,23 @@ const Input = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/ditto`);
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${value}`);
         const data = await res.json();
         setPokemon(data);
-
-        console.log(pokemon.abilities);
-
-        // console.log(data);
       } catch (err) {
         console.log('got an error', err);
       }
     };
-    fetchData();
-  }, []);
 
-  // const realPoke = [...pokemon];
+    if (value) {
+      fetchData();
+    }
+  }, [value]);
 
-  console.log(pokemon.abilities);
+  if (!pokemon) return null;
 
-  // const orgData = {
-  //   name: pokemon.name,
-  //   abilities: pokemon.abilities,
-  //   srcFront: pokemon.sprites.front_default,
-  //   srcBack: pokemon.sprites.front_default,
-  // };
+  console.log(pokemon.sprites.back_default);
+  console.log(pokemon.sprites.front_default);
 
   return (
     <>
@@ -48,9 +41,12 @@ const Input = () => {
         className="border-solid border-2 py-2 px-5 rounded-md w-64 mt-7 mb-14"
       />
 
-      {pokemon.name}
-
-      <Card />
+      <Card
+        name={pokemon.name}
+        abilities={pokemon.abilities}
+        srcFront={pokemon?.sprites.front_default}
+        srcBack={pokemon?.sprites.back_default}
+      />
     </>
   );
 };

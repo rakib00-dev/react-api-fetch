@@ -2,45 +2,61 @@ import { useEffect, useRef, useState } from 'react';
 
 const Card = ({ srcFront, srcBack, name, abilities }) => {
   const imgTag = useRef();
+  const [count, setCount] = useState(0); // Use state for controlling the count
+  const imgs = [
+    srcFront, //
+    srcBack, //
+  ];
 
-  const [put, setPut] = useState(
-    'https://animatorsresourcekit.blog/wp-content/uploads/2020/04/rig-link.png'
-  );
+  console.log(srcBack);
 
-  let count = 0;
-  const imgs = [];
-  imgs[0] =
-    'https://animatorsresourcekit.blog/wp-content/uploads/2020/04/rig-link.png'; //srcFront
-  imgs[1] =
-    'https://animatorsresourcekit.blog/wp-content/uploads/2020/02/agorarigs.jpg'; //srcBack
-
-  function imageChange() {
-    imgTag.current.src = imgs[count];
-    if (count < imgs.length - 1) {
-      count++;
-
-      // return console.log(imgs[count]);
-    } else {
-      count = 0;
+  const imageChange = () => {
+    if (imgTag.current) {
+      imgTag.current.src = imgs[count];
     }
-  }
-  // console.log(imgTag.current.src);
+    setCount((prevCount) => (prevCount < imgs.length - 1 ? prevCount + 1 : 0));
+  };
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       imageChange();
     }, 1000);
-  });
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [count]); // Trigger on count change
 
   return (
-    <>
-      <div className="w-max h-max bg-red-500 p-5 rounded-xl">
-        <img ref={imgTag} src={put} alt="" />
-        <h1>Name: {name}</h1>
-
-        <div>Abilities: {abilities}</div>
+    <div className="w-max h-max p-5 rounded-xl">
+      <div className="card card-side bg-base-100 shadow-xl">
+        <figure>
+          <img
+            ref={imgTag}
+            src={imgs[0]} // Initial image source
+            alt="Pokemons"
+            className="w-72 h-38 bg-center rounded-xl"
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">Name: {name}</h2>
+          <ol>
+            Abilities:{' '}
+            {abilities?.map((ele, i) => (
+              <li key={i} className="pl-8">
+                {i + 1}. {ele.ability.name}
+              </li>
+            ))}
+          </ol>
+          <div className="card-actions justify-end">
+            <button
+              className="btn btn-primary mt-5 text-white"
+              onClick={() => window.location.reload()}
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
